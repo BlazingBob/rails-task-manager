@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[show edit update destroy]
+  before_action :set_task, only: %i[show edit update destroy complete]
 
   def index
     @tasks = Task.all
@@ -32,6 +32,11 @@ class TasksController < ApplicationController
     redirect_to tasks_path, status: :see_other
   end
 
+  def complete
+    @task.update(completed: true)
+    redirect_to task_path(@task)
+  end
+
   private
 
   def set_task
@@ -39,6 +44,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :details)
+    params.require(:task).permit(:title, :details, :completed)
   end
 end

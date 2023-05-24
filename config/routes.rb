@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: 'tasks#index'
+
   get 'tasks', to: 'tasks#index'
 
   get 'tasks/new', to: 'tasks#new'
@@ -13,4 +15,6 @@ Rails.application.routes.draw do
   patch 'tasks/:id', to: 'tasks#update'
 
   delete 'tasks/:id', to: 'tasks#destroy'
+
+  patch 'tasks/:id', to: 'tasks#complete', as: 'complete_task'
 end

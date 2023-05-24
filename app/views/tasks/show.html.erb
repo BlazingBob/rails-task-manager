@@ -1,8 +1,13 @@
-<h2><%= @task.title %></h2>
-<p><%= @task.details %></p>
-<%= link_to "Back to list", tasks_path %>
-<%= link_to "Update task", edit_tasks_path %>
-<%= link_to "Delete",
-  task_path(@task),
-  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-%>
+<div class="container">
+  <h1>Task Details</h1>
+  <div>
+    <h2><%= @task.title %></h2>
+    <p><%= @task.details %></p>
+    <%= link_to "Mark as Complete", complete_task_path(@task), method: :patch  %>
+  </div>
+    <%= link_to "Back to list", tasks_path, :class => "btn btn-secondary btn-sm"%>
+    <%= link_to "Update task", edit_tasks_path, :class => "btn btn-primary btn-sm" %>
+    <%= link_to "Delete",
+    task_path(@task),
+    data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, :class => "btn btn-danger btn-sm"%>
+</div>
